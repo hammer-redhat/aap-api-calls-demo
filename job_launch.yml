@@ -1,0 +1,20 @@
+---
+- name: Launch a job in AAP from a playbook. 
+  hosts: localhost
+  tasks:
+    - name: Launch a job with inventory and AAP credentials. 
+      ansible.controller.job_launch:
+        job_template: "ping"
+        controller_config_file: files/controller_auth
+        wait: true
+      register: job
+
+    - name: Wait for job max 120s
+      ansible.controller.job_wait:
+        job_id: "{{ job.id }}"
+        timeout: 120
+        controller_config_file: files/controller_auth
+
+    - name: Display id and status of the job. 
+      ansible.builtin.debug:
+        msg: "Job id {{ job.id }} has a status of {{ job.status }}" 

@@ -1,0 +1,6 @@
+[general]
+host=https://aap.example.com
+username= user
+password= password
+#oauth_token= <token>
+verify_ssl=false
