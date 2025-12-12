@@ -1,0 +1,10 @@
+---
+- name: Launch a job in AAP from a playbook. 
+  hosts: localhost
+  tasks:
+    - name: Launch a job with inventory and AAP credentials. 
+      ansible.controller.workflow_launch:
+        workflow_template: "Ping workflow"
+        controller_config_file: files/controller_auth
+        wait: true
+      register: job
